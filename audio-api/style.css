@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.wrapper img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+  cursor: pointer;
+}
+.wrapper img:hover {
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
