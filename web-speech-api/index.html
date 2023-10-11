@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Speech API</title>
+  <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+  <button id="readButton">Leer artículo</button>
+  <article id="articleBody">
+    <h1>Cómo usar la API de Web Speech en tu Sitio Web</h1>
+    <p>La tecnología de reconocimiento de voz se ha vuelto cada vez más accesible y poderosa en los últimos años, y la API de Web Speech es una excelente herramienta para aprovecharla en tus aplicaciones web. Con esta API, puedes permitir a los usuarios hablar en lugar de escribir, y también proporcionar retroalimentación de voz. En este artículo, exploraremos cómo usar la API de Web Speech de manera sencilla en tu sitio web.</p>
+    <h2>Paso 1: Comprobar la compatibilidad del navegador</h2>
+    <p>Antes de sumergirte en la API de Web Speech, es importante asegurarte de que los navegadores de tus usuarios sean compatibles. La API es compatible con navegadores modernos como Google Chrome, Mozilla Firefox, Microsoft Edge y Safari. Verifica que tu público objetivo esté utilizando navegadores compatibles antes de implementarla.</p>
+    <h2>Paso 2: Habilitar el acceso al micrófono</h2>
+    <p>Para utilizar la funcionalidad de reconocimiento de voz, debes obtener el permiso del usuario para acceder a su micrófono. Esto es fundamental para garantizar la privacidad y la seguridad. Puedes solicitar este permiso de la siguiente manera:</p>
+    <pre>
+        <code>
+navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(function (stream) {
+    // El micrófono está habilitado, puedes iniciar el reconocimiento de voz.
+  })
+  .catch(function (error) {
+    console.error('Error al acceder al micrófono: ' + error);
+  });
+        </code>
+    </pre>
+    <p>Este código solicita permiso al usuario para acceder al micrófono y, si se concede, te permite iniciar el reconocimiento de voz.</p>
+    <h2>Paso 3: Iniciar el reconocimiento de voz</h2>
+    <p>Una vez que tengas acceso al micrófono, puedes crear una instancia del objeto <code>SpeechRecognition</code> para iniciar el reconocimiento de voz. El siguiente código te muestra cómo hacerlo:</p>
+    <pre>
+        <code>
+const recognition = new window.SpeechRecognition();
+recognition.start();
+        </code>
+    </pre>
+    <p>Con esto, la API estará escuchando lo que el usuario dice a través del micrófono.</p>
+    <h2>Paso 4: Configurar eventos y manejar resultados</h2>
+    <p>Para aprovechar al máximo la API de Web Speech, es importante configurar eventos que te permitan manejar los resultados del reconocimiento de voz. Por ejemplo, puedes utilizar el evento <code>result</code> para obtener el texto reconocido. Aquí tienes un ejemplo:</p>
+    <pre>
+        <code>
+recognition.addEventListener('result', function (event) {
+  const transcript = event.results[0][0].transcript;
+  // Haz algo con el texto reconocido, como mostrarlo en la página o procesarlo.
+});
+        </code>
+    </pre>
+    <p>Este código captura el texto reconocido y te permite realizar acciones basadas en él, como mostrarlo en la página o realizar una búsqueda.</p>
+    <h2>Paso 5: Controlar el fin de la grabación</h2>
+    <p>La API de Web Speech también proporciona eventos para controlar el inicio y el fin de la grabación. Puedes utilizar el evento <code>end</code> para detener el reconocimiento de voz y liberar recursos cuando sea necesario.</p>
+    <pre>
+        <code>
+recognition.addEventListener('end', function () {
+  // Detener el reconocimiento de voz y liberar recursos.
+  recognition.stop();
+});
+        </code>
+    </pre>
+    <h2>Conclusión</h2>
+    <p>La API de Web Speech es una poderosa herramienta que te permite integrar la entrada de voz y la síntesis de voz en tu sitio web. Con estos pasos básicos, puedes habilitar el reconocimiento de voz y comenzar a ofrecer una experiencia interactiva a tus usuarios. A medida que te familiarices con la API, podrás personalizar y ampliar su funcionalidad para satisfacer las necesidades específicas de tu sitio web.</p>
+  </article>
+  <script src="index.js" type="text/javascript"></script>
+</body>
+</html>
